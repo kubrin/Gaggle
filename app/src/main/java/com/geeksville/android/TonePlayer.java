@@ -41,13 +41,13 @@ public class TonePlayer {
   public TonePlayer(float freqHz) {
     setFrequency(freqHz);
     // setDutyCycle(0.3f);
-    createNative();
+//    createNative();
   }
 
   public void close() {
-    if (audioTrack.getState() == AudioTrack.PLAYSTATE_PLAYING)
-      audioTrack.stop();
-    audioTrack.release();
+//    if (audioTrack.getState() == AudioTrack.PLAYSTATE_PLAYING)
+//      audioTrack.stop();
+//    audioTrack.release();
   }
 
   /*
@@ -92,8 +92,8 @@ public class TonePlayer {
   }
 
   public void play() {
-    audioTrack.stop();
-    audioTrack.reloadStaticData();
-    audioTrack.play();
+//    audioTrack.stop();
+//    audioTrack.reloadStaticData();
+//    audioTrack.play();
   }
 }

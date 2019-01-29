@@ -392,8 +392,8 @@ public class GPSClient extends Service implements IGPSClient {
     PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
         notificationIntent, 0);
 
-    notification.setLatestEventInfo(context, contentTitle, contentText,
-        contentIntent);
+//    notification.setLatestEventInfo(context, contentTitle, contentText,
+//        contentIntent);
 
     startForegroundGlue(NOTIFICATION_ID, notification);
   }
@@ -500,8 +500,13 @@ public class GPSClient extends Service implements IGPSClient {
       String provider = (simData != null) ? simData.getProvider()
           : LocationManager.GPS_PROVIDER;
 
-      manager.requestLocationUpdates(provider, minTimeMs, minDistMeters,
-          listener, thread.getLooper());
+      try {
+        manager.requestLocationUpdates(provider, minTimeMs, minDistMeters,
+                listener, thread.getLooper());
+      } catch(SecurityException e) {
+
+      }
+
     }
 
     // Provide an initial location if we know where we are

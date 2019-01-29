@@ -24,19 +24,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.CoreProtocolPNames;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
-import org.apache.http.util.EntityUtils;
+//import org.apache.http.HttpEntity;
+//import org.apache.http.HttpResponse;
+//import org.apache.http.NameValuePair;
+//import org.apache.http.client.HttpClient;
+//import org.apache.http.client.entity.UrlEncodedFormEntity;
+//import org.apache.http.client.methods.HttpPost;
+//import org.apache.http.impl.client.DefaultHttpClient;
+//import org.apache.http.message.BasicNameValuePair;
+//import org.apache.http.params.BasicHttpParams;
+//import org.apache.http.params.CoreProtocolPNames;
+//import org.apache.http.params.HttpConnectionParams;
+//import org.apache.http.params.HttpParams;
+//import org.apache.http.util.EntityUtils;
 
 
 /**
@@ -68,52 +68,54 @@ public class LeonardoUpload {
 		if (i >= 1)
 			shortFilename = shortFilename.substring(0, i);
 		String sCompetitionClass = String.valueOf(competitionClass);
-		HttpParams httpParameters = new BasicHttpParams();
+
+//		HttpParams httpParameters = new BasicHttpParams();
 		// Set the timeout in milliseconds until a connection is established.
-		HttpConnectionParams.setConnectionTimeout(httpParameters, connectionTimeout);
+//		HttpConnectionParams.setConnectionTimeout(httpParameters, connectionTimeout);
 		// Set the default socket timeout (SO_TIMEOUT) 
 		// in milliseconds which is the timeout for waiting for data.
-		HttpConnectionParams.setSoTimeout(httpParameters, operationTimeout);
+//		HttpConnectionParams.setSoTimeout(httpParameters, operationTimeout);
 
-		HttpClient httpclient = new DefaultHttpClient(httpParameters);
-		httpclient.getParams().setBooleanParameter(CoreProtocolPNames.USE_EXPECT_CONTINUE,
-				false);
-		HttpPost httppost = new HttpPost(postURL);
-		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("user", username));
-		nameValuePairs.add(new BasicNameValuePair("pass", password));
-		nameValuePairs.add(new BasicNameValuePair("igcfn", shortFilename));
-		nameValuePairs.add(new BasicNameValuePair("Klasse", sCompetitionClass));
-		nameValuePairs.add(new BasicNameValuePair("IGCigcIGC", igcFile));
-		httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+//		HttpClient httpclient = new DefaultHttpClient(httpParameters);
+//		httpclient.getParams().setBooleanParameter(CoreProtocolPNames.USE_EXPECT_CONTINUE,
+//				false);
+//		HttpPost httppost = new HttpPost(postURL);
+//		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+//		nameValuePairs.add(new BasicNameValuePair("user", username));
+//		nameValuePairs.add(new BasicNameValuePair("pass", password));
+//		nameValuePairs.add(new BasicNameValuePair("igcfn", shortFilename));
+//		nameValuePairs.add(new BasicNameValuePair("Klasse", sCompetitionClass));
+//		nameValuePairs.add(new BasicNameValuePair("IGCigcIGC", igcFile));
+//		httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 		
-		HttpResponse response = httpclient.execute(httppost);
-		HttpEntity entity = response.getEntity();
+//		HttpResponse response = httpclient.execute(httppost);
+//		HttpEntity entity = response.getEntity();
 
-		String resp = EntityUtils.toString(entity);
+//		String resp = EntityUtils.toString(entity);
 
 		// An error looks like:
 		// <html><body>problem<br>This is not a valid .igc
 		// file</body></html>
 
 		// Check for success
-		if (resp.contains("flight scored"))
-			resp = null;
-		else {
-			int bodLoc = resp.indexOf("<body>");
-			if (bodLoc >= 0)
-				resp = resp.substring(bodLoc + 6);
-			int probLoc = resp.indexOf("problem");
-			if (probLoc >= 0)
-				resp = resp.substring(probLoc + 7);
-			if (resp.startsWith("<br>"))
-				resp = resp.substring(4); 
-			int markLoc = resp.indexOf('<');
-			if (markLoc >= 0)
-				resp = resp.substring(0, markLoc);
-			resp = resp.trim();
-		}
+//		if (resp.contains("flight scored"))
+//			resp = null;
+//		else {
+//			int bodLoc = resp.indexOf("<body>");
+//			if (bodLoc >= 0)
+//				resp = resp.substring(bodLoc + 6);
+//			int probLoc = resp.indexOf("problem");
+//			if (probLoc >= 0)
+//				resp = resp.substring(probLoc + 7);
+//			if (resp.startsWith("<br>"))
+//				resp = resp.substring(4);
+//			int markLoc = resp.indexOf('<');
+//			if (markLoc >= 0)
+//				resp = resp.substring(0, markLoc);
+//			resp = resp.trim();
+//		}
 
-		return resp;
+//		return resp;
+		return null;
 	}
 }

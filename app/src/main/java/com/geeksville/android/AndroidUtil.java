@@ -26,13 +26,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.StreamCorruptedException;
+import java.net.HttpURLConnection;
 import java.net.URL;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
+//import org.apache.http.HttpEntity;
+//import org.apache.http.HttpResponse;
+//import org.apache.http.client.HttpClient;
+//import org.apache.http.client.methods.HttpGet;
+//import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.content.Context;
 import android.net.Uri;
@@ -102,14 +103,21 @@ public class AndroidUtil {
 
 			return url.openStream();
 		} else {
-			HttpClient httpclient = new DefaultHttpClient();
-			HttpGet httpget = new HttpGet(uri.toString());
-			HttpResponse response = httpclient.execute(httpget);
-			HttpEntity entity = response.getEntity();
-			if (entity != null)
-				return entity.getContent();
-			else
-				throw new IOException("No HTTP response");
+			URL urlObj = new URL(uri.toString());
+			HttpURLConnection urlConnection = (HttpURLConnection) urlObj.openConnection();
+			// int status = urlConnection.getResponseCode();
+			InputStream is = urlConnection.getInputStream();
+			return is;
+
+			//HttpClient httpclient = new DefaultHttpClient();
+			//HttpGet httpget = new HttpGet(uri.toString());
+			//HttpResponse response = httpclient.execute(httpget);
+			//HttpEntity entity = response.getEntity();
+			//if (entity != null)
+			//	return entity.getContent();
+			//else
+			//	throw new IOException("No HTTP response");
+
 			// Use the regular java stuff
 			// URL url = new URL(uri.toString());
 

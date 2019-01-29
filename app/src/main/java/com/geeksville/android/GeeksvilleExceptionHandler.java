@@ -22,20 +22,23 @@ package com.geeksville.android;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
+//import org.apache.http.HttpEntity;
+//import org.apache.http.HttpResponse;
+//import org.apache.http.NameValuePair;
+//import org.apache.http.client.HttpClient;
+//import org.apache.http.client.entity.UrlEncodedFormEntity;
+//import org.apache.http.client.methods.HttpPost;
+//import org.apache.http.impl.client.DefaultHttpClient;
+//import org.apache.http.message.BasicNameValuePair;
 
 import android.app.Activity;
 
@@ -63,27 +66,35 @@ public class GeeksvilleExceptionHandler extends PostMortemReportExceptionHandler
 	protected void submit(Throwable e) {
 		String theErrReport = getDebugReport(e);
 
-		try {
-			HttpClient httpclient = new DefaultHttpClient();
-			HttpPost httppost = new HttpPost(submitURL);
+		//try {
+			//HttpClient httpclient = new DefaultHttpClient();
+			//HttpPost httppost = new HttpPost(submitURL);
 
-			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-			nameValuePairs.add(new BasicNameValuePair("appname", mApp.getPackageName()));
-			nameValuePairs.add(new BasicNameValuePair("content", theErrReport));
-			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			//List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+			//nameValuePairs.add(new BasicNameValuePair("appname", mApp.getPackageName()));
+			//nameValuePairs.add(new BasicNameValuePair("content", theErrReport));
+			//httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
-			HttpResponse response = httpclient.execute(httppost);
-			HttpEntity entity = response.getEntity();
+			//HttpResponse response = httpclient.execute(httppost);
+			//HttpEntity entity = response.getEntity();
 
-			BufferedReader respStream = new BufferedReader(new InputStreamReader(entity
-					.getContent()));
-			// String message = respStream.readLine();
-			respStream.close();
+			//BufferedReader respStream = new BufferedReader(new InputStreamReader(entity
+			//		.getContent()));
+			//// String message = respStream.readLine();
+			//respStream.close();
 			// Log.d("resp", message);
 
-		} catch (IOException e1) {
+
+			//URL urlObj = new URL(uri.toString());
+			//HttpURLConnection urlConnection = (HttpURLConnection) urlObj.openConnection();
+			// int status = urlConnection.getResponseCode();
+			//InputStream is = urlConnection.getInputStream();
+
+
+
+		//} catch (IOException e1) {
 			// Failure contacting geeksville, ignore it for now (FIXME)
-		}
+		//}
 	}
 
 }
